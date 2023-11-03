@@ -1,0 +1,18 @@
+<%= render "public/public_header" %>
+
+<%= form_with model: @post, url:posts_path, method: :POST do |f| %>
+  <p>出品名</p>
+  <%= f.text_field :name, placeholder: "パーツ名など" %>
+
+  <p>商品説明</p>
+  <%= f.text_area :introduction %>
+
+  <p>商品画像</p>
+  <%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*"%>
+  <%= f.file_field :images, name: 'post[images][]', data: {index: 1}, accept: "image/*" %>
+  <%= f.file_field :images, name: 'post[images][]', data: {index: 2}, accept: "image/*" %>
+  <%= f.file_field :images, name: 'post[images][]', data: {index: 3}, accept: "image/*" %>
+  <%= f.file_field :images, name: 'post[images][]', data: {index: 4}, accept: "image/*" %>
+
+  <%= f.submit"出品する" %>
+<% end %>

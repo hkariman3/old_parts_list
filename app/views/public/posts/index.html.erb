@@ -1,0 +1,16 @@
+<%= render "public/public_header" %>
+
+<% @posts.each do |posts| %>
+    <%= posts.name %>
+    <%= posts.introduction %>
+    <% if posts.images.attached? %>
+        <%= image_tag posts.images[0], size: "200x200" %>
+        <%# image_tag posts.images[1], size: "200x200" %>
+        <%# image_tag posts.images[2], size: "200x200" %>
+        <%# image_tag posts.images[3], size: "200x200" %>
+        <%# image_tag posts.images[4], size: "200x200" %>
+    <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+
+<% end %>
