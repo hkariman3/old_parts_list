@@ -1,8 +1,18 @@
 <%= render "public/public_header" %>
 
 <% @posts.each do |posts| %>
+    <p>出品名</p>
+    <%= link_to post_path(posts.id) do %>
     <%= posts.name %>
-    <%= posts.introduction %>
+    <% end %><br>
+
+    <p>商品説明</p>
+    <%= posts.introduction %><br>
+
+    <p>商品価格</p>
+    <%= posts.price %>
+
+    <p>商品写真</p>
     <% if posts.images.attached? %>
         <%= image_tag posts.images[0], size: "200x200" %>
         <%# image_tag posts.images[1], size: "200x200" %>

@@ -1,11 +1,14 @@
 <%= render "public/public_header" %>
 
-<%= form_with model: @post, url:posts_path, method: :POST do |f| %>
+<%= form_with model:@post, url:posts_path, method: :post do |f| %>
   <p>出品名</p>
   <%= f.text_field :name, placeholder: "パーツ名など" %>
 
   <p>商品説明</p>
-  <%= f.text_area :introduction %>
+  <%= f.text_area :introduction, placeholder: "説明欄" %>
+
+  <p>商品価格</p>
+  <%= f.text_field :price %>
 
   <p>商品画像</p>
   <%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*"%>
