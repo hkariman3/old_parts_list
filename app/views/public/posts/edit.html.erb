@@ -1,0 +1,25 @@
+<%= render "public/public_header" %>
+
+<%= form_with model: @post, url: post_path, method: :patch do |f| %>
+
+    <p>出品名</p>
+    <%= f.text_field :name %>
+
+    <p>ジャンル</p>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+
+    <p>商品説明</p>
+    <%= f.text_field :introduction %>
+
+    <p>商品価格</p>
+    <%= f.text_field :price %>
+
+    <p>商品写真</p>
+    <%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*"%>
+    <%= f.file_field :images, name: 'post[images][]', data: {index: 1}, accept: "image/*" %>
+    <%= f.file_field :images, name: 'post[images][]', data: {index: 2}, accept: "image/*" %>
+    <%= f.file_field :images, name: 'post[images][]', data: {index: 3}, accept: "image/*" %>
+    <%= f.file_field :images, name: 'post[images][]', data: {index: 4}, accept: "image/*" %>
+
+    <%= f.submit "変更する" %>
+<% end %>

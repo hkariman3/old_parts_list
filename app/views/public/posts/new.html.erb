@@ -1,8 +1,11 @@
 <%= render "public/public_header" %>
 
-<%= form_with model:@post, url:posts_path, method: :post do |f| %>
+<%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
   <p>出品名</p>
   <%= f.text_field :name, placeholder: "パーツ名など" %>
+
+  <p>ジャンル</p>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
 
   <p>商品説明</p>
   <%= f.text_area :introduction, placeholder: "説明欄" %>

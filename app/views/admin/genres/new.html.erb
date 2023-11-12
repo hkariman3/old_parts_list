@@ -1,0 +1,13 @@
+<%= render "admin/admin_header" %>
+
+<%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
+  <%= f.label :name, "ジャンル名" %>
+  <%= f.text_field :name %>
+  <%= f.submit"ジャンル追加" %>
+<% end %>
+
+<% @genres.each do |genres| %>
+
+<%= genres.name %>
+
+<% end %>
