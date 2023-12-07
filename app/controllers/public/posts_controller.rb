@@ -6,16 +6,23 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
     @post.save
     redirect_to posts_path
   end
 
   def index
     @posts = Post.all
+
+    if params[:genre_id][:genre_id].present?
+      @post = Post.where(genre_id: params[:genre_id][:genre_id])
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def edit
@@ -30,6 +37,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name,:introduction,:price, {images: []})
+    params.require(:post).permit(:name,:introduction,:price, :genre_id, {images: []})
   end
 end

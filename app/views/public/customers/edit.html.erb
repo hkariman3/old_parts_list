@@ -1,0 +1,32 @@
+<%= render "public/public_header" %>
+
+<%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
+
+  <%= f.label :first_name, "姓" %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :first_name_kana, "セイ" %>
+  <%= f.text_field :first_name_kana %>
+
+  <%= f.label :last_name, "名" %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :last_name_kana, "メイ" %>
+  <%= f.text_field :last_name_kana %>
+
+  <%= f.label :nickname, "ニックネーム" %>
+  <%= f.text_field :nickname %>
+
+  <%= f.label :introduction, "自己紹介" %>
+  <%= f.text_field :introduction %>
+
+  <%= f.label :email, "メール" %>
+  <%= f.text_field :email %>
+
+  <%= f.label :telephone_number, "電話番号" %>
+  <%= f.text_field :telephone_number %>
+
+  <%= f.submit "内容を変更する" %>
+
+
+<% end %>

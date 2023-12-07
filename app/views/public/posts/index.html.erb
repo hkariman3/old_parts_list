@@ -1,29 +1,45 @@
 <%= render "public/public_header" %>
 
-<% @posts.each do |posts| %>
-    <p>出品名</p>
-    <%= link_to post_path(posts.id) do %>
-    <%= posts.name %>
-    <% end %><br>
+<%= form_tag posts_path, method: :get do %>
+  <%= collection_select(:genre_id, :genre_id, Genre.all, :id, :name, prompt: "全てのジャンル") %>
+<%= submit_tag "絞り込み" %>
+<% end %>
 
-    <p>ジャンル名</p>
-    <%= posts.genre %>
+<% @posts.each do |post| %>
+  <p>出品名</p>
+  <%= link_to post_path(post.id) do %>
+    <%= post.name %>
+  <% end %><br>
 
-    <p>商品説明</p>
-    <%= posts.introduction %><br>
+  <p>ジャンル名</p>
+  <%= post.genre.name %>
 
-    <p>商品価格</p>
-    <%= posts.price %>
+  <p>商品説明</p>
+  <%= post.introduction %><br>
 
-    <p>商品写真</p>
-    <% if posts.images.attached? %>
-        <%= image_tag posts.images[0], size: "200x200" %>
-        <%# image_tag posts.images[1], size: "200x200" %>
-        <%# image_tag posts.images[2], size: "200x200" %>
-        <%# image_tag posts.images[3], size: "200x200" %>
-        <%# image_tag posts.images[4], size: "200x200" %>
-    <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-    <% end %>
+  <p>商品価格</p>
+  <%= post.price %>
 
+  <p>商品写真</p>
+  <% if post.images.attached? %>
+    <%= image_tag post.images[0], size: "200x200" %>
+    <%# image_tag post.images[1], size: "200x200" %>
+    <%# image_tag post.images[2], size: "200x200" %>
+    <%# image_tag post.images[3], size: "200x200" %>
+    <%# image_tag post.images[4], size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+<% end %>
+
+<% if params[:genre_id].present? %>
+  <h2>ジャンルID: <%= params[:genre_id] %>の絞り込み結果</h2>
+
+  <% @post.each do |search| %>
+    <div>
+      <h3><%= search.name %></h3>
+      <p><%= search.introduction %></p>
+      <p><%= search.price %></p>
+    </div>
+  <% end %>
 <% end %>

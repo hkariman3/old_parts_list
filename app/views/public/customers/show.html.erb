@@ -1,0 +1,11 @@
+<%= render "public/public_header" %>
+
+<h3><%= @customer.nickname %>さん</h3>
+
+<p>自己紹介欄</p>
+<%= @customer.introduction %>
+
+<p>出品中の商品</p>
+<% @posts.each do |posts| %>
+
+<% end %>
