@@ -23,10 +23,10 @@
   <p>商品写真</p>
   <% if post.images.attached? %>
     <%= image_tag post.images[0], size: "200x200" %>
-    <%# image_tag post.images[1], size: "200x200" %>
-    <%# image_tag post.images[2], size: "200x200" %>
-    <%# image_tag post.images[3], size: "200x200" %>
-    <%# image_tag post.images[4], size: "200x200" %>
+    <%= image_tag post.images[1], size: "200x200" %>
+    <%= image_tag post.images[2], size: "200x200" %>
+    <%= image_tag post.images[3], size: "200x200" %>
+    <%= image_tag post.images[4], size: "200x200" %>
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
