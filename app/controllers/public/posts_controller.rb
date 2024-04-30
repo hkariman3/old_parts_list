@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!, except: [:index,:show,:mylike]
 
   def new
     @post = Post.new
@@ -12,17 +13,22 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+  @posts = Post.all
 
-    if params[:genre_id][:genre_id].present?
-      @post = Post.where(genre_id: params[:genre_id][:genre_id])
-    end
+  if params[:genre_id].present? && params[:genre_id][:genre_id].present?
+    @post = Post.where(genre_id: params[:genre_id][:genre_id])
+  end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+    if @post.nil?
+      redirect_to root_path
+    else
     @comment = Comment.new
     @comments = @post.comments
+    end
+    session[:post_id] = params[:id]
   end
 
   def edit
@@ -33,6 +39,15 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to posts_path
+  end
+  
+  def mylike
+    customer = Customer.find(current_customer.id)
+      if customer.likes.any?
+        @likes = customer.likes
+      else
+        @like_count = customer.likes.count
+      end
   end
   private
 

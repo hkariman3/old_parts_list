@@ -1,8 +1,14 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!, except: [:show]
 
   def show
-    @customer = Customer.find(params[:id])
-    @posts = @customer.posts.all
+    @customer = Customer.find_by(id: params[:id])
+    
+    if @customer.nil?
+      redirect_to posts_path
+    else
+      @posts = @customer.posts.all
+    end
   end
 
   def index
@@ -15,6 +21,9 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    if @item.customer_id != current_customer.id
+    redirect_to root_path
+    end
   end
 
   def update

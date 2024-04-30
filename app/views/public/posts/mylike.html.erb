@@ -1,0 +1,17 @@
+<%= render "public/public_header" %>
+<% if @like_count > 0 %>
+  <div class = "container">
+    <div class = "row text_center">
+      <h1>Myいいねリスト</h1>
+    </div>
+    
+    <div class = "row">
+      <% @likes.each do |like| %>
+        <% post = Post.find(like.post_id) %>
+        <p><%= post.title %></p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p>いいねがありません</p>
+<% end %>

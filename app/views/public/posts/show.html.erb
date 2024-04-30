@@ -1,26 +1,37 @@
 <%= render "public/public_header" %>
+<div class = "container">
+  <div class = "div">
+    <p>商品名</p>
+    <%= @post.name %>
+  </div>
+  
+  <div class = "div">
+    <p>ジャンル名</p>
+    <%= @post.genre %>
+  </div>
+  
+  <div class = "div">
+    <p>商品説明</p>
+    <%= @post.introduction %>
+  </div>
+  
+  <div class = "div">
+    <p>商品価格</p>
+    <%= @post.price %>
+  </div>
+  
+  <div class="div">
+    <p>商品写真</p>
+    <% if @post.images.attached? %>
+      <% @post.images.each do |image| %>
+        <%= image_tag image, size: "200x200" %>
+      <% end %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+  </div>
 
-<p>商品名</p>
-<%= @post.name %>
 
-<p>ジャンル名</p>
-<%= @post.genre %>
-
-<p>商品説明</p>
-<%= @post.introduction %>
-
-<p>商品価格</p>
-<%= @post.price %>
-<p>商品写真</p>
-<% if @post.images.attached? %>
-        <%= image_tag @post.images[0], size: "200x200" %>
-        <%# image_tag posts.images[1], size: "200x200" %>
-        <%# image_tag posts.images[2], size: "200x200" %>
-        <%# image_tag posts.images[3], size: "200x200" %>
-        <%# image_tag posts.images[4], size: "200x200" %>
-<% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
 
 <div>
   <p>コメント件数：<%= @post.comments.count %></p>
@@ -30,13 +41,13 @@
   <% end %>
 </div>
 
+<% if customer_signed_in? %>
 <div>
   <%= form_with model: [@post, @comment], url: post_comments_path(@post.id), method: :post do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>
-
 <% if @post.favorited_by?(current_customer) %>
     <p>
       <%= link_to post_likes_path(@post), method: :delete do %>
@@ -50,3 +61,7 @@
       <% end %>
     </p>
   <% end %></div>
+  
+  <%= link_to "購入する", confirm_path %>
+<% end %>
+  </div>

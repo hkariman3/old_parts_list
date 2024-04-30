@@ -9,8 +9,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
   scope module: :public do
+    root to: "posts#index"
     get "/search", to: "searches#search"
     get "/contract" => "customers#contract"
+    get "/mylike" => "posts#mylike"
 
     resources :customers, only:[:edit, :show,:index, :update,]
 
@@ -21,7 +23,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     resources :addresses, only:[:new, :create, :index, :edit, :update, :destroy]
 
-    resources :contracts, only:[:show, :index, :crarte]
+    resources :contracts, only:[:show, :index, :create]
 
 
   end

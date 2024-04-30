@@ -1,42 +1,64 @@
+<% if customer_signed_in? %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-         <p class="nav-link"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></p>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-      <div class="navbar-nav mr-auto">
-        <div class="search_form">
-          <%= form_tag(search_path,:method => 'get') do %>
-            <%= label_tag '出品名で検索' %>
-            <%= text_field_tag :search %>
-            <%= submit_tag 'Search', :name => nil %>
-          <% end %>
-        </div>
-      </div>
+  <p class="navbar-brand border border-dark pt-1 pb-2 pl-4 pr-4">
+    <%= link_to "OPL",root_path %>
+  </p>
 
+  <div class="collapse navbar-collapse flex-column ml-auto" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+          <%= link_to "投稿する",new_post_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "Myいいね",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "マイページ",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "ログアウト",destroy_customer_session_path, method: :delete, class: "nav-link"%>
+      </li>
+    </ul>
+    <div class="search_form">
+      <%= form_tag(search_path,:method => 'get') do %>
+        <%= label_tag '出品名で検索' %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
+      <% end %>
+    </div>
   </div>
 </nav>
+
+<% else %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <p class="navbar-brand border border-dark pt-2 pb-2 pl-4 pr-4">
+    <%= link_to "OPL", root_path %>
+  </p>
+
+  <div class="collapse navbar-collapse flex-column ml-auto" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <%= link_to "商品一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "新規登録",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "ログイン",root_path,class: "nav-link" %>
+      </li>
+    </ul>
+    <div class="navbar-nav mr-auto">
+      <div class="search_form">
+        <%= form_tag(search_path,:method => 'get') do %>
+          <%= label_tag '出品名で検索' %>
+          <%= text_field_tag :search %>
+          <%= submit_tag 'Search', :name => nil %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<% end %>
