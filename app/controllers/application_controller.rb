@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
         root_path
     end
   end
-
+  
+  private
+  def show_message
+    flash[:notice] = "ログインが必要です" if request.path != new_customer_session_path
+  end
 end

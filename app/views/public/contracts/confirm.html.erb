@@ -6,15 +6,31 @@
   </div>
   
   <div class = "row">
-    <table>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">商品名</th>
+          <td><%= @post.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">商品説明</th>
+          <td><%= @post.introduction %></td>
+        </tr>
+        <tr>
+          <th scope="row">商品画像</th>
+          <td><%= image_tag @post.images.first.variant(resize: "100x100") if @post.images.attached? %></td>
+        </tr>
+        <tr>
+          <th scope="row">価格</th>
+          <td><%= @post.price %></td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+  
+  <div class = "row">
+    <button>
+      <%= link_to "購入する" ,contracts_path, method: :post %>
+    </button>
   </div>
 </div>

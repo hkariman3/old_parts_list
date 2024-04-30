@@ -13,6 +13,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get "/search", to: "searches#search"
     get "/contract" => "customers#contract"
     get "/mylike" => "posts#mylike"
+    get "/confirm" => "contracts#confirm"
 
     resources :customers, only:[:edit, :show,:index, :update,]
 
