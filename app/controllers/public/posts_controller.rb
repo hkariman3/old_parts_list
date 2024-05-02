@@ -22,6 +22,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @address = current_customer.try(:address)
     if @post.nil?
       redirect_to root_path
     else

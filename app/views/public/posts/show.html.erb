@@ -61,7 +61,14 @@
       <% end %>
     </p>
   <% end %></div>
-  
-  <%= link_to "購入する", confirm_path %>
-<% end %>
+  <div class = "row">
+    <div class = "col text-center">
+      <% if current_customer && @address.present? %>
+        <%= link_to "購入", purchase_path(@product), class: "btn btn-primary" %>
+      <% else %>
+        <p class = "text-danger">※購入には会員登録（ログイン）と住所の登録が必要です</p>
+      <% end %>
+    </div>
   </div>
+<% end %>
+</div>

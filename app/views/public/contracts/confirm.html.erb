@@ -29,6 +29,19 @@
   </div>
   
   <div class = "row">
+    <div class = "col">
+      <%= form_with model: @contract, url: contracts_path, method: :post do |f| %>
+        <% @addresses.each do |address| %>
+          <%= form.radio_button :address_id, address.id %>
+          <%= form.label :address_id, address.full_address %><br>
+      <% end %>
+  
+  <%= form.submit "選択する" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class = "row">
     <button>
       <%= link_to "購入する" ,contracts_path, method: :post %>
     </button>

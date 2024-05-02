@@ -3,6 +3,8 @@ class Public::ContractsController < ApplicationController
   
   
   def confirm
+    @addresses = current_customer.address
+    
     post_id = session[:post_id]
     
     if post_id.blank?
@@ -24,8 +26,8 @@ class Public::ContractsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     post.update(deleted: true)
-    @confirm = Contract.new(contract_params)
-    @confirm.save
+    @contract = Contract.new(contract_params)
+    @contract.save
     flash[:notice] = "投稿に成功しました"
     redirect_to thanks_path
     
