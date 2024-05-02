@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_06_172646) do
+ActiveRecord::Schema.define(version: 2024_05_02_095823) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,15 +70,12 @@ ActiveRecord::Schema.define(version: 2023_12_06_172646) do
   end
 
   create_table "contracts", force: :cascade do |t|
-    t.string "total_price"
     t.string "postage"
-    t.string "name"
-    t.string "address"
-    t.string "postal_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "posts_id"
     t.integer "buyer_id"
+    t.integer "address_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -121,6 +118,7 @@ ActiveRecord::Schema.define(version: 2023_12_06_172646) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "genre_id"
     t.integer "customer_id"
+    t.boolean "is_deleted", default: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
