@@ -63,11 +63,15 @@
   <% end %></div>
   <div class = "row">
     <div class = "col text-center">
-      <% if current_customer && @address.present? %>
-        <%= link_to "購入", purchase_path(@product), class: "btn btn-primary" %>
+      <% if @show_button %>
+        <%= link_to "購入", confirm_path, class: "btn btn-primary" %>
       <% else %>
-        <p class = "text-danger">※購入には会員登録（ログイン）と住所の登録が必要です</p>
-      <% end %>
+        <p class="text-danger">
+          ※購入には
+          <%= link_to "会員登録（ログイン）", new_customer_session_path, class: 'text-danger border-bottom border-danger' %>と
+          <%= link_to "住所の登録が必要です", new_address_path, class: 'text-danger border-bottom border-danger' %>
+        </p>
+    <% end %>
     </div>
   </div>
 <% end %>

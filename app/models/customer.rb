@@ -7,5 +7,7 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :addresses, dependent: :destroy
+  has_many :contracts, dependent: :destroy
 
 end

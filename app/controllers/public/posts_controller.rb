@@ -13,23 +13,24 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-  @posts = Post.all
-
-  if params[:genre_id].present? && params[:genre_id][:genre_id].present?
-    @post = Post.where(genre_id: params[:genre_id][:genre_id])
-  end
+    @posts = Post.where(is_deleted: false)
+  
+    if params[:genre_id].present? && params[:genre_id][:genre_id].present?
+      @posts = @posts.where(genre_id: params[:genre_id][:genre_id])
+    end
   end
 
   def show
     @post = Post.find_by(id: params[:id])
-    @address = current_customer.try(:address)
-    if @post.nil?
-      redirect_to root_path
-    else
-    @comment = Comment.new
-    @comments = @post.comments
-    end
+    @address = current_customer&.addresses
+      if @post.nil?
+        redirect_to root_path
+      else
+        @comment = Comment.new
+        @comments = @post.comments
+      end
     session[:post_id] = params[:id]
+    @show_button = current_customer.present? && @address.present?
   end
 
   def edit

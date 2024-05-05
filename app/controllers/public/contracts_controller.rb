@@ -3,10 +3,10 @@ class Public::ContractsController < ApplicationController
   
   
   def confirm
-    @addresses = current_customer.address
-    
+    @contract = Contract.new
+    @addresses = current_customer.addresses
     post_id = session[:post_id]
-    
+    session[:post_id] = params[:post_id]
     if post_id.blank?
       redirect_to root_path, alert: "無効な操作です"
       return
@@ -24,25 +24,34 @@ class Public::ContractsController < ApplicationController
   end
   
   def create
-    @post = Post.find(params[:post_id])
-    post.update(deleted: true)
     @contract = Contract.new(contract_params)
+    @post = Post.find(session[:post_id])
+    @post.update(is_deleted: true)
+    @contract.buyer_id = current_customer.id
+    @contract.posts_id = @post.id
+    @contract.postage = 800
     @contract.save
-    flash[:notice] = "投稿に成功しました"
+    flash[:notice] = "購入完了。入金後ステータスを変えてください"
     redirect_to thanks_path
-    
   end
   
   def index
+    @customer = current_customer
   end
   
   def thanks
+    @post_id = session[:post_id]
+    
   end
   
   private
   
   def contract_params
-    params.require(:contract).permit(:postage,:buyer_id,:address_id,:post_id)
+    params.require(:contract).permit(:postage,:buyer_id,:address_id,:posts_id)
+  end
+  
+  def post_params
+    params.require(:post).permit(:is_deleted)
   end
 end
 

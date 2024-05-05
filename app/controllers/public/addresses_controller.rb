@@ -7,6 +7,7 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     @address.save
     redirect_to new_address_path
   end
@@ -23,6 +24,6 @@ class Public::AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:address,:postal_code,:telephon_number,:name)
+    params.require(:address).permit(:address,:postal_code,:telephon_number,:name,:customer_id)
   end
 end

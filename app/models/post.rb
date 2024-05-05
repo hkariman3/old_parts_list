@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :genre
   belongs_to :customer
+  has_many :contracts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
