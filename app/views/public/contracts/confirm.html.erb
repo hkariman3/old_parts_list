@@ -18,7 +18,15 @@
         </tr>
         <tr>
           <th scope="row">商品画像</th>
-          <td><%= image_tag @post.images.first.variant(resize: "100x100") if @post.images.attached? %></td>
+          <td>
+            <% if @post.images.attached? %>
+            <% @post.images[0..4].each do |image| %>
+            <%= image_tag image, size: "100x100" %>
+            <% end %>
+            <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th scope="row">価格</th>

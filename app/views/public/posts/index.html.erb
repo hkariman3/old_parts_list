@@ -22,15 +22,12 @@
 
   <p>商品写真</p>
   <% if post.images.attached? %>
-    <%= image_tag post.images[0], size: "200x200" %>
-    <%= image_tag post.images[1], size: "200x200" %>
-    <%= image_tag post.images[2], size: "200x200" %>
-    <%= image_tag post.images[3], size: "200x200" %>
-    <%= image_tag post.images[4], size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
+  <% post.images[0..4].each do |image| %>
+    <%= image_tag image, size: "200x200" %>
   <% end %>
-<% end %>
+  <% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
 
 <% if params[:genre_id].present? %>
   <h2>ジャンルID: <%= params[:genre_id] %>の絞り込み結果</h2>
@@ -42,4 +39,5 @@
       <p><%= search.price %></p>
     </div>
   <% end %>
+<% end %>
 <% end %>
