@@ -21,9 +21,13 @@ class Public::ContractsController < ApplicationController
       return
     end
   end
-
+  
   def show
     @contract = Contract.find(params[:id])
+    @post = Post.find(@contract.post_id)
+    @customer = Customer.find(@post.customer_id)
+    @buyer = Customer.find(@contract.customer_id)
+    @address = Address.find(@contract.address_id)
   end
   
   def create

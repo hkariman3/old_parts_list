@@ -13,15 +13,16 @@
         <tbody>
           <tr>
             <th>出品者名</th>
-            <th></th>
+            <th><%= @customer.first_name %><%= @customer.last_name %></th>
           </tr>
           <tr>
             <th>購入者</th>
-            <th></th>
+            <th><%= @buyer.first_name %><%= @buyer.last_name %></th>
           </tr>
           <tr>
             <th>宛先</th>
-            <th></th>
+            <th><%= @address.address %></th>
+            <th><%= @address.postal_code %></th>
           </tr>
         </tbody>
       </table>
