@@ -7,25 +7,34 @@
     </div>
   </div>
   
-  <div class = "row">
-    <div class = "col">
-      <table class = "table">
-        <tbody>
-          <tr>
-            <th>出品者名</th>
-            <th><%= @customer.first_name %><%= @customer.last_name %></th>
-          </tr>
-          <tr>
-            <th>購入者</th>
-            <th><%= @buyer.first_name %><%= @buyer.last_name %></th>
-          </tr>
-          <tr>
-            <th>宛先</th>
-            <th><%= @address.address %></th>
-            <th><%= @address.postal_code %></th>
-          </tr>
-        </tbody>
-      </table>
+  <div class = "row border-top">
+    <div class = "col d-flex align-items-center justify-content-center my-2">
+      <div class = "text-center font-weight-bold">出品者名</div>
+    </div>
+    <div class = "col  d-flex align-items-center justify-content-center">
+      <div class="text-center"><%= @customer.first_name %><%= @customer.last_name %></div>
     </div>
   </div>
+  
+  <div class = "row border-top">
+    <div class = "col d-flex align-items-center justify-content-center">
+      <div>購入者</div>
+    </div>
+    <div class = "col d-flex justify-content-center">
+      <p><%= @buyer.first_name %><%= @buyer.last_name %></p>
+    </div>
+  </div>
+  
+  <div class = "row border-top text-center">
+    <div class = "col">
+      <p>宛先</p>
+    </div>
+    <div class = "col">
+      <p><%= @address.address %></p>
+    </div>
+    <div class = "col">
+      <p><%= @address.postal_code %></p>
+    </div>
+  </div>
+
 </div>
