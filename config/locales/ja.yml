@@ -1,0 +1,13 @@
+ja:
+  enums:
+    contract:
+      payment_status:
+        before_payment: "お支払い前"
+        after_payment: "お支払い済"
+        delivered: "発送完了"
+      delivery_status:
+        waiting_payment: "支払い待ち"
+        shipped: "発送済"
+      contract_status:
+        uncompleted: "未契約"
+        completed: "契約完了"
