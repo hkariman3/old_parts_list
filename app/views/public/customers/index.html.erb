@@ -1,19 +1,42 @@
 <%= render "public/public_header" %>
-
-<div>
-  <%= link_to posts_path do %>
-  <h4><%= @customer.first_name %><%= @customer.last_name %>さんの出品</h4>
-  <% end %>
-</div>
-
-<div>
-  <h4>ユーザー情報詳細</h4>
-</div>
-
-<div>
-  <h4>ユーザー情報更新</h4>
-</div>
-
-<div>
-  <h4>取引履歴</h4>
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <%= link_to posts_path do %>
+      <h4><%= @customer.first_name %><%= @customer.last_name %>さんのマイページ</h4>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col">
+      
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col">
+      
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col">
+      
+    </div>
+  </div>
+      <div>
+      </div>
+      
+      <div>
+        <h4>ユーザー情報詳細</h4>
+      </div>
+      
+      <div>
+        <h4>ユーザー情報更新</h4>
+      </div>
+      
+      <div>
+        <h4>取引履歴</h4>
+      </div>
 </div>

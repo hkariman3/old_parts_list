@@ -34,19 +34,33 @@ class Public::ContractsController < ApplicationController
     @contract = Contract.new(contract_params)
     @post = Post.find(session[:post_id])
     @post.update(is_deleted: true)
-    
     @contract.address = current_customer.addresses.first
     @contract.customer = current_customer
     @contract.post = @post
     @contract.postage = 800
     @contract.save!
-    
     flash[:notice] = "購入完了。入金後ステータスを変えてください"
     redirect_to thanks_path
   end
   
+  def update
+    @contract = Contract.find(params[:id])
+      if @contract.update(contract_params)
+        if @contract.payment_status == "after_payment" && @contract.delivery_status == "shipped"
+          @contract.update(contract_status: "completed")
+        end
+    @contract.errors.full_messages
+          redirect_to contract_path(@contract)
+      else
+        flash[:danger] = "うまく更新されませんでした"
+        render :show
+      end
+  end
+  
   def index
     @customer = current_customer
+    @contracts = @customer.contracts
+    @contracts = Contract.where(customer_id: current_customer.id)
   end
   
   def thanks
@@ -56,7 +70,7 @@ class Public::ContractsController < ApplicationController
   private
   
   def contract_params
-    params.require(:contract).permit(:postage,:customer_id,:address_id,:post_id)
+    params.require(:contract).permit(:postage,:customer_id,:address_id,:post_id,:payment_status,:delivery_status,:contract_status)
   end
   
   def post_params

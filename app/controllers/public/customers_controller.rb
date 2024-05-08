@@ -15,10 +15,6 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
 
-  def contract
-    @customer = current_customer
-  end
-
   def edit
     @customer = Customer.find(params[:id])
     if @item.customer_id != current_customer.id

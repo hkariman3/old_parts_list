@@ -11,7 +11,9 @@ class Public::PostsController < ApplicationController
     @post.save
     redirect_to posts_path
   end
-
+  
+  
+  
   def index
     @posts = Post.where(is_deleted: false)
   
@@ -45,12 +47,14 @@ class Public::PostsController < ApplicationController
   
   def mylike
     customer = Customer.find(current_customer.id)
-      if customer.likes.any?
-        @likes = customer.likes
-      else
-        @like_count = customer.likes.count
-      end
+    if customer.likes.any?
+      @likes = customer.likes.joins(:post).where(posts: { is_deleted: false })
+      @like_count = @likes.count
+    else
+      @like_count = 0
+    end
   end
+  
   private
 
   def post_params
