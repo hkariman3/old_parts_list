@@ -24,6 +24,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @customer = @post.customer
     @address = current_customer&.addresses
       if @post.nil?
         redirect_to root_path
@@ -53,6 +54,11 @@ class Public::PostsController < ApplicationController
     else
       @like_count = 0
     end
+  end
+  
+  def list
+    @customer = Customer.find(params[:id])
+    @posts = @customer.posts.where(is_deleted: false)
   end
   
   private

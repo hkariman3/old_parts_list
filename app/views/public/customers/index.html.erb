@@ -1,42 +1,26 @@
 <%= render "public/public_header" %>
 <div class = "container">
-  <div class = "row">
-    <div class = "col">
-      <%= link_to posts_path do %>
+  <div class = "row mt-4">
+    <div class = "col text-center">
       <h4><%= @customer.first_name %><%= @customer.last_name %>さんのマイページ</h4>
-      <% end %>
     </div>
   </div>
   
-  <div class = "row">
-    <div class = "col">
-      
+  <div class = "row my-2 border-top">
+    <div class = "col text-center">
+      <%= link_to "ユーザー情報更新", edit_customer_path(@customer) %>
     </div>
   </div>
   
-  <div class = "row">
-    <div class = "col">
-      
+  <div class = "row my-2 border-top">
+    <div class = "col text-center">
+      <%= link_to "投稿一覧", list_path %>
     </div>
   </div>
   
-  <div class = "row">
-    <div class = "col">
-      
+  <div class = "row my-2 border-top border-bottom">
+    <div class = "col text-center">
+      <%= link_to "取引履歴", contracts_path %>
     </div>
   </div>
-      <div>
-      </div>
-      
-      <div>
-        <h4>ユーザー情報詳細</h4>
-      </div>
-      
-      <div>
-        <h4>ユーザー情報更新</h4>
-      </div>
-      
-      <div>
-        <h4>取引履歴</h4>
-      </div>
 </div>

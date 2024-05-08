@@ -30,6 +30,17 @@
       <%= image_tag 'no_image', size: "200x200" %>
     <% end %>
   </div>
+  
+  <div class = "row">
+    <div class = "col">
+      <div>投稿した人</div>
+    </div>
+    <div class = "col">
+      <%= link_to customer_path(@customer) do %>
+      <%= @customer.nickname %>
+      <% end %>
+    </div>
+  </div>
 
 
 

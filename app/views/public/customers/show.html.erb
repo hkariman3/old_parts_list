@@ -2,10 +2,13 @@
 
 <h3><%= @customer.nickname %>さん</h3>
 
-<p>自己紹介欄</p>
-<%= @customer.introduction %>
-
-<p>出品中の商品</p>
-<% @posts.each do |posts| %>
-
+<h4>自己紹介欄</h4>
+<% if @customer.introduction.nil? %>
+  <div>自己紹介がありません</div>
+<% else %>
+  <%= @customer.introduction %>
 <% end %>
+
+<div>
+  <%= link_to "出品中の商品", list_path(@customer) %>
+</div>
