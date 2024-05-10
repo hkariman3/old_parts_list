@@ -1,0 +1,21 @@
+<%= render "admin/admin_header" %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col ">
+      <% @customers.each do |customer| %>
+      <%= customer.first_name %>
+      <%= customer.last_name %>
+      <%= customer.first_name_kana %>
+      <%= customer.last_name_kana %>
+      <%= customer.introduction %>
+      <%= link_to "削除する", admin_customer_path(customer.id), method: :delete, data:{confirm: "本当に削除しますか？"} %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col">
+      <%= paginate @customers %>
+    </div>
+  </div>
+</div>

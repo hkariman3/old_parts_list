@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_customer!, except: [:index,:show,:mylike]
+  before_action :authenticate_customer!, except: [:index,:show,:list]
 
   def new
     @post = Post.new
@@ -8,18 +8,23 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      flash.now[:error] = @post.errors.full_messages.first
+      render :new
+    end
   end
   
   
   
   def index
-    @posts = Post.where(is_deleted: false)
+    @posts = Post.where(is_deleted: false).page(params[:page])
   
     if params[:genre_id].present? && params[:genre_id][:genre_id].present?
       @posts = @posts.where(genre_id: params[:genre_id][:genre_id])
     end
+    @posts = @posts.page(params[:page])
   end
 
   def show
@@ -30,7 +35,7 @@ class Public::PostsController < ApplicationController
         redirect_to root_path
       else
         @comment = Comment.new
-        @comments = @post.comments
+        @comments = @post.comments.limit(10)
       end
     session[:post_id] = params[:id]
     @show_button = current_customer.present? && @address.present?

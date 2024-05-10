@@ -37,31 +37,41 @@
     </div>
   </div>
   
+  <% if @contract.contract_status != 'completed' %>
   <div class = "row my-2">
     <div class = "col">
       <h3 class = "text-center">こちらから更新してください</h3>
     </div>
   </div>
+  <% end %>
   
   <div class = "row">
-    <div class = "col">
+    <div class = "col text-center">
       <% if @contract.contract_status == "completed" %>
-      <h3>購入完了済です</h3>
-      <% else %>
-        <% if current_customer.id == @buyer.id %>
-          <%= form_with model: @contract, url: contract_path, method: :patch do |f| %>
-            <%= f.select :payment_status, Contract.payment_statuses.keys.map {|k| [I18n.t("enums.contract.payment_status.#{k}"), k]}%>
-            <%= f.submit '更新', class: 'btn btn-primary' %>
-          <% end %>
-        <% elsif current_customer.id == @customer.id %>
-          <%= form_with model: @contract, url: contract_path, method: :patch do |f| %>
-            <%= f.select :delivery_status, Contract.delivery_statuses_i18n.keys %>
-          
-            <%= f.submit '更新', class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
+      <h3>＊こちらの取引は完了しています</h3>
       <% end %>
     </div>
   </div>
-
+      <div class = "row">
+        <div class = "col">
+          <h3>購入者はこちら</h3>
+          <%= form_with model: @contract, url: contract_path, method: :patch do |f| %>
+            <%= f.select :payment_status, Contract.payment_statuses.keys.map {|k| [I18n.t("enums.contract.payment_status.#{k}"), k]}%>
+            
+            <% if @contract.contract_status != 'completed' %>
+            <%= f.submit '更新', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class = "col">
+          <h3>出品者はこちら</h3>
+          <%= form_with model: @contract, url: contract_path, method: :patch do |f| %>
+            <%= f.select :delivery_status, Contract.delivery_statuses.keys.map {|k| [I18n.t("enums.contract.delivery_status.#{k}"), k]}%>
+            
+            <% if @contract.contract_status != 'completed' %>
+            <%= f.submit '更新', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
 </div>

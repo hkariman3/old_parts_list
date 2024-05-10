@@ -1,0 +1,10 @@
+<%= render "public/public_header" %>
+
+<h1>コメント一覧</h1>
+  <% @comments.each do |comments| %>
+<p><strong>コメント内容:</strong> <%= comments.comment %></p>
+<p><strong>投稿日時:</strong> <%= comments.created_at %></p>
+<p><strong>投稿者:</strong> <%= comments.customer.nickname %></p>
+  <% end %>
+
+<%= link_to 'コメント一覧へ戻る', post_path(@post) %>

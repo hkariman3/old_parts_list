@@ -3,9 +3,11 @@
   <div class = "row">
     <div class = "col">
       <% @posts.each do |post| %>
+        <%= link_to contract_path(post) do %>
         <%= post.name %>
         <%= post.introduction %>
         <%= post.price %>
+        <% end %>
       <% end %>
     </div>
   </div>

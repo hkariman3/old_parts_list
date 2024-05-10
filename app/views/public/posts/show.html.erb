@@ -52,6 +52,10 @@
   <% end %>
 </div>
 
+<div>
+  <%= link_to "全てのコメントを見る", post_comment_path(@post) %>
+</div>
+
 <% if customer_signed_in? %>
 <div>
   <%= form_with model: [@post, @comment], url: post_comments_path(@post.id), method: :post do |f| %>

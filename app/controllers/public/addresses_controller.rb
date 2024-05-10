@@ -1,8 +1,9 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses.page(params[:page])
   end
 
   def create

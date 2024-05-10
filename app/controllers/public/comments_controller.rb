@@ -8,6 +8,15 @@ class Public::CommentsController < ApplicationController
     comment.save
     redirect_to post_path(post.id)
   end
+  
+  def show
+    @post = Post.find_by(id: params[:post_id])
+  if @post.nil?
+    redirect_to root_path
+  else
+    @comments = @post.comments.order(created_at: :desc)
+  end
+  end
 
   private
 

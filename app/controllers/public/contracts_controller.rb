@@ -44,18 +44,33 @@ class Public::ContractsController < ApplicationController
   end
   
   def update
-    @contract = Contract.find(params[:id])
-      if @contract.update(contract_params)
-        if @contract.payment_status == "after_payment" && @contract.delivery_status == "shipped"
-          @contract.update(contract_status: "completed")
-        end
-    @contract.errors.full_messages
-          redirect_to contract_path(@contract)
-      else
-        flash[:danger] = "うまく更新されませんでした"
-        render :show
+  @contract = Contract.find(params[:id])
+  
+  if current_customer.id == @contract.customer_id && params[:contract][:payment_status].present?
+    if @contract.update(contract_params)
+      if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
+        @contract.update(contract_status: "completed")
       end
+      redirect_to contract_path(@contract)
+    else
+      flash[:danger] = "うまく更新されませんでした"
+      render :show
+    end
+  elsif current_customer.id == @contract.post.customer_id && params[:contract][:delivery_status].present?
+    if @contract.update(contract_params)
+      if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
+        @contract.update(contract_status: "completed")
+      end
+      redirect_to contract_path(@contract)
+    else
+      flash[:danger] = "うまく更新されませんでした"
+      render :show
+    end
+  else
+    flash[:danger] = "許可されていないユーザーからの更新リクエストです"
+    redirect_to contract_path(@contract)
   end
+end
   
   def index
     @customer = current_customer

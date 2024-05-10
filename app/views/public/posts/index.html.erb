@@ -1,5 +1,11 @@
 <%= render "public/public_header" %>
 
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <%= form_tag posts_path, method: :get do %>
   <%= collection_select(:genre_id, :genre_id, Genre.all, :id, :name, prompt: "全てのジャンル") %>
 <%= submit_tag "絞り込み" %>
@@ -28,6 +34,8 @@
   <% else %>
   <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
+  
+  <%= paginate @posts %>
 
 <% if params[:genre_id].present? %>
   <h2>ジャンルID: <%= params[:genre_id] %>の絞り込み結果</h2>
