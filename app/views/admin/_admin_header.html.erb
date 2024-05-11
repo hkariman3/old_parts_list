@@ -1,7 +1,10 @@
 <nav class = "navber border">
   <ul class = "navber-nav">
     <li class = "nav-item">
-      <%= link_to "トップ", admin_path %>
+      <%= link_to "トップ", admin_top_path %>
+    </li>
+    <li class = "nav-item">
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
     </li>
   </ul>
 </nav>

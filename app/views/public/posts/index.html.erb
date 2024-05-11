@@ -11,6 +11,8 @@
 <%= submit_tag "絞り込み" %>
 <% end %>
 
+
+
 <% @posts.each do |post| %>
   <p>出品名</p>
   <%= link_to post_path(post.id) do %>
@@ -38,9 +40,9 @@
   <%= paginate @posts %>
 
 <% if params[:genre_id].present? %>
-  <h2>ジャンルID: <%= params[:genre_id] %>の絞り込み結果</h2>
+  <h2>絞り込み結果</h2>
 
-  <% @post.each do |search| %>
+  <% @filtered_posts.each do |search| %>
     <div>
       <h3><%= search.name %></h3>
       <p><%= search.introduction %></p>

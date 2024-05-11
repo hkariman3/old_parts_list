@@ -81,17 +81,21 @@
   <% end %></div>
   <div class = "row">
     <div class = "col text-center">
-      <% unless current_customer.id == @post.id %>
-        <% if @show_button %>
-          <%= link_to "購入", confirm_path, class: "btn btn-primary" %>
-        <% else %>
-          <p class="text-danger">
-            ※購入には
-            <%= link_to "会員登録（ログイン）", new_customer_session_path, class: 'text-danger border-bottom border-danger' %>と
-            <%= link_to "住所の登録が必要です", new_address_path, class: 'text-danger border-bottom border-danger' %>
-          </p>
-        <% end %>
-      <% end %>
+      <% if customer_signed_in? %>
+  <% unless current_customer.id == @post.customer.id %>
+    <% if @show_button %>
+      <%= link_to "購入", confirm_path, class: "btn btn-primary" %>
+    <% else %>
+      <p class="text-danger">
+        ※購入には
+        <%= link_to "会員登録（ログイン）", new_customer_session_path, class: 'text-danger border-bottom border-danger' %>と
+        <%= link_to "住所の登録が必要です", new_address_path, class: 'text-danger border-bottom border-danger' %>
+      </p>
+    <% end %>
+  <% end %>
+<% else %>
+  <div>購入にはログインが必要です</div>
+<% end %>
     </div>
   </div>
 <% end %>
