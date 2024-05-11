@@ -2,7 +2,7 @@
 <div class = "container">
   <div class = "row">
     <div class = "col">
-      <div class = "text-center font-weight-bold"><%= @customer.first_name %><%= @customer.last_name %>さんの取引履歴一覧</div>
+      <div class = "text-center font-weight-bold"><%= @customer.first_name %><%= @customer.last_name %>さんの現在買われている商品</div>
     </div>
   </div>
   <div class = "row h-auto">
@@ -13,6 +13,9 @@
             <%= contract.post.name %>
             <%= contract.post.introduction %>
             <%= contract.post.price %>
+            <% if contract.contract_status == "completed" %>
+            <div>取引完了済です</div>
+            <% end %>
           </div>
         <% end %>
       <% end %>

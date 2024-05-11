@@ -1,5 +1,4 @@
 class Admin::CustomersController < ApplicationController
-  
   before_action :authenticate_admin!
   
   def index
@@ -20,6 +19,6 @@ class Admin::CustomersController < ApplicationController
     flash[:alert] = "アクセス権限がありません"
     redirect_to root_path
   end
-end
+  end
   
 end

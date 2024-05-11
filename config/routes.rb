@@ -31,7 +31,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
   namespace :admin do
-    get "/" => "homes#top"
+    root to: "homes#top"
+    get "top" => "homes#top"
     resources :genres, only:[:new, :create, :destroy]
     
     resources :customers, only:[:index,:destroy]

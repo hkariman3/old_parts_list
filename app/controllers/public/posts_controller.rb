@@ -15,16 +15,15 @@ class Public::PostsController < ApplicationController
       render :new
     end
   end
-  
-  
-  
+
   def index
-    @posts = Post.where(is_deleted: false).page(params[:page])
-  
-    if params[:genre_id].present? && params[:genre_id][:genre_id].present?
-      @posts = @posts.where(genre_id: params[:genre_id][:genre_id])
-    end
-    @posts = @posts.page(params[:page])
+  @posts = Post.where(is_deleted: false).where.not(customer_id: current_customer.id).page(params[:page])
+
+  if params[:genre_id].present? && params[:genre_id][:genre_id].present?
+    @filtered_posts = @posts.where(genre_id: params[:genre_id][:genre_id])
+  else
+    @filtered_posts = @posts
+  end
   end
 
   def show
@@ -63,7 +62,7 @@ class Public::PostsController < ApplicationController
   
   def list
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.where(is_deleted: false)
+    @posts = @customer.posts.where(is_deleted: false).page(params[:page])
   end
   
   private
