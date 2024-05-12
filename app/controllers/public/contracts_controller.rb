@@ -70,12 +70,12 @@ class Public::ContractsController < ApplicationController
     flash[:danger] = "許可されていないユーザーからの更新リクエストです"
     redirect_to contract_path(@contract)
   end
-end
+  end
   
   def index
     @customer = current_customer
     @contracts = @customer.contracts
-    @contracts = Contract.where(customer_id: current_customer.id)
+    
   end
   
   def thanks
