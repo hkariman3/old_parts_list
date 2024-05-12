@@ -74,7 +74,7 @@ class Public::ContractsController < ApplicationController
   
   def index
     @customer = current_customer
-    @contracts = @customer.contracts
+    @contracts = Contract.where(customer_id: current_customer.post_ids)
   end
   
   def seller
