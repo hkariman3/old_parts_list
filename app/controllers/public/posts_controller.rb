@@ -67,7 +67,7 @@ class Public::PostsController < ApplicationController
   
   def list
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.where(is_deleted: false).page(params[:page])
+    @posts = @customer.posts.page(params[:page])
   end
   
   private
