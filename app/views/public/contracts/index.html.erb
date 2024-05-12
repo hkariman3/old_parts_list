@@ -1,24 +1,25 @@
+
 <%= render "public/public_header" %>
 <div class = "container">
   <div class = "row">
     <div class = "col">
-      <div class = "text-center font-weight-bold"><%= @customer.first_name %><%= @customer.last_name %>さんの現在買われている商品</div>
+      <div class = "text-center font-weight-bold"><%= @customer.first_name %><%= @customer.last_name %>さんの購入した商品</div>
     </div>
   </div>
-  <div class = "row h-auto">
-    <div class = "col d-flex flex-wrap">
-      <% @contracts.each do |contract| %>
-        <%= link_to contract_path(contract) do %>
-          <div class = "border h-90 w-100">
-            <%= contract.post.name %>
-            <%= contract.post.introduction %>
-            <%= contract.post.price %>
-            <% if contract.contract_status == "completed" %>
+  <div class="row h-auto">
+  <div class="col d-flex flex-wrap">
+    <% @contracts.each do |contract| %>
+      <%= link_to contract_path(contract) do %>
+        <div class="border h-90 w-100">
+          <%= contract.post.name %>
+          <%= contract.post.introduction %>
+          <%= contract.post.price %>
+          <% if contract.contract_status == "completed" %>
             <div>取引完了済です</div>
-            <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
 </div>

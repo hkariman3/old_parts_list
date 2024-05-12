@@ -14,6 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get "/mylike" => "posts#mylike"
     get "/confirm" => "contracts#confirm"
     get "/thanks" => "contracts#thanks"
+    get "/seller" => "contracts#seller"
     get "/list/:id" => "posts#list", as: 'list'
 
     resources :customers, only:[:edit, :show,:index, :update,]
