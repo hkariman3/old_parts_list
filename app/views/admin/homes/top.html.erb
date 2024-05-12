@@ -1,4 +1,22 @@
-<h2>管理者メニュー</h2>
-<%= link_to "カスタマー管理", admin_customers_path %>
+<%= render "admin/admin_header" %>
+<div class = "container">
+  <div class= "row my-3">
+      <div class = "col text-center">
+        <h1>管理者メニュー</h1>
+      </div>
+  </div>
+  
+  <div class= "row border-top">
+      <div class = "col text-center">
+        <h2><%= link_to "カスタマー管理", admin_customers_path %></h2>
+      </div>
+  </div>
+  
+  <div class= "row border-top border-bottom">
+      <div class = "col text-center">
+        <h2><%= link_to "ジャンル追加", new_admin_genre_path %></h2>
+      </div>
+  </div>
 
-<%= link_to "ジャンル追加", new_admin_genre_path %>
+    
+</div>
