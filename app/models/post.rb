@@ -8,8 +8,8 @@ class Post < ApplicationRecord
   
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :price, presence: { message: "価格を入力してください" }
-  validates :images, presence: { message: "画像は１つ以上必要です" }, length: { minimum: 1, maximum: 5, message: "画像は5つまで投稿可能です" }
+  validates :price, presence: true
+  validates :images, presence: true
   
 
   def favorited_by?(customer)

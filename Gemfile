@@ -64,6 +64,8 @@ gem "enum_help"
 
 gem "font-awesome-sass"
 
+gem 'mini_magick'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

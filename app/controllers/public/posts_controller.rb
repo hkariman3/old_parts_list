@@ -17,18 +17,18 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-  if current_customer
-    @posts = Post.where(is_deleted: false).where.not(customer_id: current_customer.id).page(params[:page])
-
-    if params[:genre_id].present? && params[:genre_id][:genre_id].present?
-      @filtered_posts = @posts.where(genre_id: params[:genre_id][:genre_id])
+    if current_customer
+      @posts = Post.where(is_deleted: false).where.not(customer_id: current_customer.id).page(params[:page])
+  
+      if params[:genre_id].present? && params[:genre_id][:genre_id].present?
+        @filtered_posts = @posts.where(genre_id: params[:genre_id][:genre_id])
+      else
+        @filtered_posts = @posts
+      end
     else
+      @posts = Post.where(is_deleted: false).page(params[:page])
       @filtered_posts = @posts
     end
-  else
-    @posts = Post.where(is_deleted: false).page(params[:page])
-    @filtered_posts = @posts
-  end
   end
 
   def show

@@ -11,11 +11,11 @@ class Public::CommentsController < ApplicationController
   
   def show
     @post = Post.find_by(id: params[:post_id])
-  if @post.nil?
-    redirect_to root_path
-  else
-    @comments = @post.comments.order(created_at: :desc)
-  end
+    if @post.nil?
+      redirect_to root_path
+    else
+      @comments = @post.comments.order(created_at: :desc)
+    end
   end
 
   private

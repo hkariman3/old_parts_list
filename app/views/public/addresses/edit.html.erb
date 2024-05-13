@@ -1,19 +1,25 @@
 <%= render "public/public_header" %>
 
-<%= form_with model: @address, url: address_path, method: :patch do |f| %>
-
-<%= f.label :address, "住所" %>
-<%= f.text_field :address %>
-
-<%= f.label :postal_code, "郵便番号" %>
-<%= f.text_field :postal_code %>
-
-<%= f.label :telephone_number, "電話番号" %>
-<%= f.text_field :telephone_number %>
-
-<%= f.label :name, "宛名" %>
-<%= f.text_field :name %>
-
-<%= f.submit "変更する" %>
-
-<% end %>
+<div class = "container">
+    <%= form_with model: @address, url: address_path, method: :patch do |f| %>
+  <div class = "row">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+    
+  <div class = "row">
+    <%= f.label :postal_code, "郵便番号" %>
+    <%= f.text_field :postal_code %>
+  </div>
+    
+    <%= f.label :telephone_number, "電話番号" %>
+    <%= f.text_field :telephone_number %>
+    
+    <%= f.label :name, "宛名" %>
+    <%= f.text_field :name %>
+    
+    <%= f.submit "変更する" %>
+    
+    <% end %>
+  
+</div>

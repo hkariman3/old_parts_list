@@ -44,32 +44,31 @@ class Public::ContractsController < ApplicationController
   end
   
   def update
-  @contract = Contract.find(params[:id])
-  
-  if current_customer.id == @contract.customer_id && params[:contract][:payment_status].present?
-    if @contract.update(contract_params)
-      if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
-        @contract.update(contract_status: "completed")
+    @contract = Contract.find(params[:id])
+    if current_customer.id == @contract.customer_id && params[:contract][:payment_status].present?
+      if @contract.update(contract_params)
+        if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
+          @contract.update(contract_status: "completed")
+        end
+        redirect_to contract_path(@contract)
+      else
+        flash[:danger] = "うまく更新されませんでした"
+        render :show
       end
-      redirect_to contract_path(@contract)
-    else
-      flash[:danger] = "うまく更新されませんでした"
-      render :show
-    end
-  elsif current_customer.id == @contract.post.customer_id && params[:contract][:delivery_status].present?
-    if @contract.update(contract_params)
-      if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
-        @contract.update(contract_status: "completed")
+    elsif current_customer.id == @contract.post.customer_id && params[:contract][:delivery_status].present?
+      if @contract.update(contract_params)
+        if @contract.payment_status == "delivered" && @contract.delivery_status == "shipped"
+          @contract.update(contract_status: "completed")
+        end
+        redirect_to contract_path(@contract)
+      else
+        flash[:danger] = "うまく更新されませんでした"
+        render :show
       end
-      redirect_to contract_path(@contract)
     else
-      flash[:danger] = "うまく更新されませんでした"
-      render :show
+      flash[:danger] = "許可されていないユーザーからの更新リクエストです"
+      redirect_to contract_path(@contract)
     end
-  else
-    flash[:danger] = "許可されていないユーザーからの更新リクエストです"
-    redirect_to contract_path(@contract)
-  end
   end
   
   def index

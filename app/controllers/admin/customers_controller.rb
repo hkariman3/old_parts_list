@@ -15,10 +15,10 @@ class Admin::CustomersController < ApplicationController
   private
   
   def authenticate_admin!
-  unless current_admin
-    flash[:alert] = "アクセス権限がありません"
-    redirect_to root_path
-  end
+    unless current_admin
+      flash[:alert] = "アクセス権限がありません"
+      redirect_to root_path
+    end
   end
   
 end
