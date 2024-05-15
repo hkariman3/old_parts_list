@@ -47,12 +47,15 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    unless current_customer == @post.customer
+      redirect_to posts_path
+    end
   end
 
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to posts_path
+    redirect_to post_path(@post)
   end
   
   def mylike
