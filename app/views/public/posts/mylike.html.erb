@@ -1,19 +1,43 @@
 <%= render "public/public_header" %>
 <% if @like_count.present? && @like_count > 0 %>
   <div class = "container">
-    <div class = "row text_center">
-      <h1>Myいいねリスト</h1>
+    <div class = "rowr">
+      <div class = "col text_center">
+        <h1>Myいいねリスト</h1>
+      </div>
     </div>
 
     <div class = "row">
       <% @likes.each do |like| %>
+      <div class= "col-md-6 d-flex flex-wrap p-3 border">
         <% post = Post.find(like.post_id) %>
-        <%= post.name %>
-        <%= post.introduction %>
-        <%= post.price %>
+        <%= link_to post_path(post) do %>
+              <div class = "table">
+                <tr>
+                <td>商品名</td>
+                <td><%= post.name %></td>
+                </tr>
+              </div>
+              
+              <div class = "table">
+                <tr>
+                <td>商品説明</td>
+                <td><%= post.introduction %></td>
+                  
+                </tr>
+              </div>
+              
+              <div class = "table">
+                <tr>
+                  <td>値段</td>
+                  <td><%= post.price %></td>
+                </tr>
+              </div>
+        </div>
+        <% end %>
       <% end %>
-    </div>
-  </div>
+      </div>
+    
 <% else %>
   <p>いいねがありません</p>
 <% end %>
