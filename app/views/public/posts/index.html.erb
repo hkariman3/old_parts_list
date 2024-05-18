@@ -1,53 +1,78 @@
 <%= render "public/public_header" %>
-
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
-<%= form_tag posts_path, method: :get do %>
-  <%= collection_select(:genre_id, :genre_id, Genre.all, :id, :name, prompt: "全てのジャンル") %>
-<%= submit_tag "絞り込み" %>
-<% end %>
-
-
-
-<% @posts.each do |post| %>
-  <p>出品名</p>
-  <%= link_to post_path(post.id) do %>
-    <%= post.name %>
-  <% end %><br>
-
-  <p>ジャンル名</p>
-  <%= post.genre.name %>
-
-  <p>商品説明</p>
-  <%= post.introduction %><br>
-
-  <p>商品価格</p>
-  <%= post.price %>
-
-  <p>商品写真</p>
-  <% if post.images.attached? %>
-  <% post.images[0..4].each do |image| %>
-    <%= image_tag image, size: "200x200" %>
-  <% end %>
-  <% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-  
-  <%= paginate @posts %>
-
-<% if params[:genre_id].present? %>
-  <h2>絞り込み結果</h2>
-
-  <% @filtered_posts.each do |search| %>
-    <div>
-      <h3><%= search.name %></h3>
-      <p><%= search.introduction %></p>
-      <p><%= search.price %></p>
+<div class = "container">
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
     </div>
   <% end %>
-<% end %>
-<% end %>
+  
+  <%= form_tag posts_path, method: :get do %>
+    <%= collection_select(:genre_id, :genre_id, Genre.all, :id, :name, prompt: "全てのジャンル") %>
+  <%= submit_tag "絞り込み" %>
+  <% end %>
+  
+  
+  <div class = "row text-center border my-4">
+    <% @posts.each do |post| %>
+    
+    <div class = "col">
+      <p>出品名</p>
+      <%= link_to post_path(post.id) do %>
+        <%= post.name %>
+      <% end %>
+    </div>
+    
+    <div class = "col">
+      <p>ジャンル名</p>
+      <%= post.genre.name %>
+    </div>
+    
+    <div class = "col">
+      <p>商品説明</p>
+      <%= post.introduction %><br>
+    </div>
+    
+    <div class = "col">
+      <p>商品価格</p>
+      <%= post.price %>
+    </div>
+    
+    <div class = "col">
+      <p>商品写真</p>
+      <% if post.images.attached? %>
+        <% post.images[0..4].each do |image| %>
+          <%= image_tag image, size: "200x200" %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col-md-2 offset-5">
+      <div><%= paginate @posts %></div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col text-center">
+      <% if params[:genre_id].present? %>
+        <h2>絞り込み結果</h2>
+      
+        <% @filtered_posts.each do |search| %>
+          <div>
+            <h3><%= search.name %></h3>
+            <p><%= search.introduction %></p>
+            <p><%= search.price %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <div><%= paginate @filtered_posts %></div>
+    </div>
+  </div>
+</div>
