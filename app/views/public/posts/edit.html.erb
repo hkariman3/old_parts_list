@@ -8,43 +8,35 @@
     </div>
     
     <div class = "row">
-        <div class = "col"></div>
-        <div class = "col"></div>
+        <div class = "col">
+            <p>ジャンル</p>
+        </div>
+        <div class = "col">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+        </div>
     </div>
     
     <div class = "row">
-        <div class = "col"></div>
-        <div class = "col"></div>
+        <div class = "col"><p>商品説明</p></div>
+        <div class = "col"><%= f.text_field :introduction %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"></div>
-        <div class = "col"></div>
+        <div class = "col"><p>商品価格</p></div>
+        <div class = "col"><%= f.text_field :price %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"></div>
-        <div class = "col"></div>
+        <div class = "col"><p>商品写真</p></div>
+        <div class = "col"><%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*" %></div>
+        <div class = "col"><%= f.file_field :images, name: 'post[images][]', data: {index: 1}, accept: "image/*" %></div>
+        <div class = "col"><%= f.file_field :images, name: 'post[images][]', data: {index: 2}, accept: "image/*" %></div>
+        <div class = "col"><%= f.file_field :images, name: 'post[images][]', data: {index: 3}, accept: "image/*" %></div>
+        <div class = "col"><%= f.file_field :images, name: 'post[images][]', data: {index: 4}, accept: "image/*" %></div>
     </div>
-        
-        
     
-        <p>ジャンル</p>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-    
-        <p>商品説明</p>
-        <%= f.text_field :introduction %>
-    
-        <p>商品価格</p>
-        <%= f.text_field :price %>
-    
-        <p>商品写真</p>
-        <%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*"%>
-        <%= f.file_field :images, name: 'post[images][]', data: {index: 1}, accept: "image/*" %>
-        <%= f.file_field :images, name: 'post[images][]', data: {index: 2}, accept: "image/*" %>
-        <%= f.file_field :images, name: 'post[images][]', data: {index: 3}, accept: "image/*" %>
-        <%= f.file_field :images, name: 'post[images][]', data: {index: 4}, accept: "image/*" %>
-    
-        <%= f.submit "変更する" %>
+    <div class = "row">
+        <div class = "col"><%= f.submit "変更する" %></div>
+    </div>
     <% end %>
 </div>
