@@ -1,5 +1,10 @@
 <%= render "public/public_header" %>
 <div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <%= link_to "住所の追加はこちら", new_address_path %>
+    </div>
+  </div>
   
   <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
   <div class = "row mt-4">

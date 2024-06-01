@@ -70,9 +70,13 @@
       <% end %>
     </div>
   </div>
+
+  <% if @filtered_posts.nil? %>
   <div class = "row">
     <div class = "col">
       <div><%= paginate @filtered_posts %></div>
     </div>
   </div>
+  <% end %>
+
 </div>

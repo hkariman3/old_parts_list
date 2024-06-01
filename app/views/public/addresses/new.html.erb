@@ -1,6 +1,31 @@
 <%= render "public/public_header" %>
-
 <%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
+<div class = "container">
+    <div class = "row">
+        <div class = "col"col></div>
+        <div class = "col"col></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"col></div>
+        <div class = "col"col></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"col></div>
+        <div class = "col"col></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"col></div>
+        <div class = "col"col></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"col></div>
+        <div class = "col"col></div>
+    </div>
+
 
 <%= f.label :address, "住所" %>
 <%= f.text_field :address %>
@@ -35,3 +60,4 @@
 <% end %>
 
 <%= paginate @addresses %>
+</div>
