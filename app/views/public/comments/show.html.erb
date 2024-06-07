@@ -1,10 +1,35 @@
 <%= render "public/public_header" %>
-
-<h1>コメント一覧</h1>
-  <% @comments.each do |comments| %>
-<p><strong>コメント内容:</strong> <%= comments.comment %></p>
-<p><strong>投稿日時:</strong> <%= comments.created_at %></p>
-<p><strong>投稿者:</strong> <%= comments.customer.nickname %></p>
-  <% end %>
-
-<%= link_to 'コメント一覧へ戻る', post_path(@post) %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h1>コメント一覧</h1>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <% @comments.each do |comments| %>
+    <div class = "col"></div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <p><strong>コメント内容:</strong> <%= comments.comment %></p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+  <p><strong>投稿日時:</strong> <%= comments.created_at %></p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <p><strong>投稿者:</strong> <%= comments.customer.nickname %></p>
+    </div>
+  </div>
+    <% end %>
+  <div class = "row">
+    <div class = "col">
+      <%= link_to 'コメント一覧へ戻る', post_path(@post) %>
+    </div>
+  </div>
+  
+</div>
