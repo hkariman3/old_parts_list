@@ -5,10 +5,10 @@
       <% @customers.each do |customer| %>
       <div>姓　|<%= customer.first_name %></div>
       <div>名　|<%= customer.last_name %></div>
-      <div><%= customer.first_name_kana %></div>
-      <div><%= customer.last_name_kana %></div>
-      <div><%= customer.introduction %></div>
-      <div><%= link_to "削除する", admin_customer_path(customer.id), method: :delete, data:{confirm: "本当に削除しますか？"} %></div>
+      <div>セイ　|<%= customer.first_name_kana %></div>
+      <div>メイ　|<%= customer.last_name_kana %></div>
+      <div>自己紹介欄　|<%= customer.introduction %></div>
+      <button class = "danger"><%= link_to "削除する", admin_customer_path(customer.id), method: :delete, data:{confirm: "本当に削除しますか？"} %></div>
       <% end %>
     </div>
   </div>
