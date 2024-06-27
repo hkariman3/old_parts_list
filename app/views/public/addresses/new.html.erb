@@ -2,46 +2,29 @@
 <%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
 <div class = "container">
     <div class = "row">
-        <div class = "col"col></div>
-        <div class = "col"col></div>
+        <div class = "col"col><%= f.label :address, "住所" %></div>
+        <div class = "col"col><%= f.text_field :address %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"col></div>
-        <div class = "col"col></div>
+        <div class = "col"col><%= f.label :postal_code, "郵便番号" %></div>
+        <div class = "col"col><%= f.text_field :postal_code %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"col></div>
-        <div class = "col"col></div>
+        <div class = "col"col><%= f.label :telephone_number, "電話番号" %></div>
+        <div class = "col"col><%= f.text_field :telephone_number %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"col></div>
-        <div class = "col"col></div>
+        <div class = "col"col><%= f.label :name, "宛名" %></div>
+        <div class = "col"col><%= f.text_field :name %></div>
     </div>
     
     <div class = "row">
-        <div class = "col"col></div>
-        <div class = "col"col></div>
+        <div class = "col"col><%= f.submit "住所を追加" %></div>
     </div>
-
-
-<%= f.label :address, "住所" %>
-<%= f.text_field :address %>
-
-<%= f.label :postal_code, "郵便番号" %>
-<%= f.text_field :postal_code %>
-
-<%= f.label :telephone_number, "電話番号" %>
-<%= f.text_field :telephone_number %>
-
-<%= f.label :name, "宛名" %>
-<%= f.text_field :name %>
-
-<%= f.submit "住所を追加" %>
 <% end %>
-
 
 <% @addresses.each do |address| %>
 
