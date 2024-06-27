@@ -1,5 +1,5 @@
 <%= render "public/public_header" %>
-<%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
+    <%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
 <div class = "container">
     <div class = "row">
         <div class = "col"col><%= f.label :address, "住所" %></div>
@@ -24,23 +24,28 @@
     <div class = "row">
         <div class = "col"col><%= f.submit "住所を追加" %></div>
     </div>
-<% end %>
+    <% end %>
 
-<% @addresses.each do |address| %>
-
-<p>住所</p>
-<%= address.address %>
-
-<p>郵便番号</p>
-<%= address.postal_code %>
-
-<p>電話番号</p>
-<%= address.telephone_number %>
-
-<p>名前</p>
-<%= address.name %>
-
-<% end %>
-
-<%= paginate @addresses %>
+    <% @addresses.each do |address| %>
+    <div class = "row">
+        <div class = "col">住所</div>
+        <div class = "col"><%= address.address %></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"><p>郵便番号</p></div>
+        <div class = "col"><%= address.postal_code %></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col"><p>電話番号</p></div>
+        <div class = "col"><%= address.telephone_number %></div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col">名前</div>
+        <div class = "col"><%= address.name %></div>
+    </div>
+    <% end %>
+    <%= paginate @addresses %>
 </div>
