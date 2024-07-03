@@ -1,5 +1,5 @@
 <%= render "public/public_header" %>
-<% @contracts.each do |contract| %>
+  <% @contracts.each do |contract| %>
   <%= link_to contract_path(contract) do %>
         <div class="border h-90 w-100">
           <%= contract.post.name %>
