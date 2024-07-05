@@ -10,11 +10,18 @@ class Customer < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :contracts, dependent: :destroy
 
-  validates :first_name, uniqueness: true
-  validates :first_name_kana, uniqueness: true
-  validates :last_name, uniqueness: true
-  validates :last_name_kana, uniqueness: true
-  validates :nickname, uniqueness: true
-  validates :telephone_number, uniqueness: true
-  validates :introduction, uniqueness: true
+  with_options presence: true do
+    validates :first_name
+  validates :first_name_kana
+  validates :last_name
+  validates :last_name_kana
+  validates :nickname
+  validates :telephone_number
+  validates :introduction
+  end
+  
+  with_options uniqueness: true do
+  
+  end
+
 end
