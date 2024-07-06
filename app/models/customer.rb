@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   has_many :contracts, dependent: :destroy
 
   with_options presence: true do
-    validates :first_name
+  validates :first_name
   validates :first_name_kana
   validates :last_name
   validates :last_name_kana
@@ -21,7 +21,13 @@ class Customer < ApplicationRecord
   end
   
   with_options uniqueness: true do
-  
+  validates :first_name
+  validates :first_name_kana
+  validates :last_name
+  validates :last_name_kana
+  validates :nickname
+  validates :telephone_number
+  validates :introduction
   end
 
 end
