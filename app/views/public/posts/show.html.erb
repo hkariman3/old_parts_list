@@ -1,7 +1,7 @@
 <%= render "public/public_header" %>
 <div class = "container">
   <% unless customer_signed_in? %>
-  <h3>購入にはログインが必要です</h3>
+  <h3 class = "text-danger">購入にはログインが必要です</h3>
   <% end %>
   
   <% if current_customer == @post.customer %>
