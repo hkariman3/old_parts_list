@@ -1,7 +1,9 @@
 <% @search.each do |s| %>
+      <%= link_to "" do %>
       <tr>
         <td><%= s.name %></td>
         <td><%= s.introduction %></td>
         <td><%= s.price %></td>
       </tr>
+      <% end %>
     <% end %>
