@@ -27,11 +27,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :addresses, only:[:new, :create, :edit, :update, :destroy]
 
     resources :contracts, only:[:show, :index, :create, :update]
+    #post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
     
-    resources :contacts, only: [:new, :create]
-    post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
-    post 'contacts/back', to: 'contacts#back', as: 'back'
-    get 'done', to: 'contacts#done', as: 'done'
+    #resources :contacts, only: [:new, :create]
+    #post 'contacts/back', to: 'contacts#back', as: 'back'
+    #get 'done', to: 'contacts#done', as: 'done'
 
   end
 
