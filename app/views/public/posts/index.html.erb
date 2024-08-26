@@ -12,8 +12,8 @@
   <% end %>
   
   
+  <% @posts.each do |post| %>
   <div class = "row text-center border my-4">
-    <% @posts.each do |post| %>
     
     <div class = "col">
       <p>出品名</p>
@@ -49,6 +49,7 @@
       <% end %>
     </div>
   </div>
+  <% end %>
   
   <div class = "row">
     <div class = "col-md-2 offset-5">
@@ -67,7 +68,6 @@
             <p><%= search.price %></p>
           </div>
         <% end %>
-      <% end %>
       <% end %>
     </div>
   </div>
