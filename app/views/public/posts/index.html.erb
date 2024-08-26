@@ -11,7 +11,6 @@
   <%= submit_tag "絞り込み" %>
   <% end %>
   
-  
   <% @posts.each do |post| %>
   <div class = "row text-center border my-4">
     
@@ -40,13 +39,22 @@
     
     <div class = "col">
       <p>商品写真</p>
-      <% if post.images.attached? %>
-        <% post.images[0..4].each do |image| %>
-          <%= image_tag image, size: "200x200" %>
+        <% if post.images.attached? %>
+      <div class = "slick">
+          <% post.images[0..4].each do |image| %>
+            <%= image_tag image, size: "200x200" %>
+          <% end %>
+      </div>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
         <% end %>
-      <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-      <% end %>
+      <script>
+      $('.slick').slick({
+      autoplay:true,
+      autoplaySpeed:3000,
+      dots:true,
+      });
+      </script>
     </div>
   </div>
   <% end %>
