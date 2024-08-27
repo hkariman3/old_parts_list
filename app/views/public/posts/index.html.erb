@@ -14,7 +14,7 @@
   <% @posts.each do |post| %>
   <div class = "row text-center border my-4">
     
-    <div class = "col">
+    <div class = "col-2">
       <p>出品名</p>
       <%= link_to post_path(post.id) do %>
         <%= post.name %>
@@ -37,12 +37,12 @@
       <%= post.price %>
     </div>
     
-    <div class = "col">
+    <div class = "col-3">
       <p>商品写真</p>
         <% if post.images.attached? %>
       <div class = "slick">
           <% post.images[0..4].each do |image| %>
-            <%= image_tag image, size: "200x200" %>
+            <%= image_tag image, size: "200x200", class: "slick-slide" %>
           <% end %>
       </div>
         <% else %>
