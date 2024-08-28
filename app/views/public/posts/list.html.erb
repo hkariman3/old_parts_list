@@ -1,15 +1,26 @@
 <%= render "public/public_header" %>
 <div class = "container">
   <div class = "row">
-    <div class = "col">
-      <% @posts.each do |post| %>
-        <%= link_to post_path(post) do %>
-        <%= post.name %>
-        <%= post.introduction %>
-        <%= post.price %>
-        <% end %>
-      <% end %>
-    </div>
+    <h2>出品中一覧</h2>
   </div>
+  <% @posts.each do |post| %>
+  <div class = "row">
+          <%= link_to post_path(post) do %>
+          <div class = "col">
+            <p>出品名</p>
+            <p><%= post.name %></p>
+          </div>
+          <div class = "col">
+            <p>商品説明</p>
+            <p><%= post.introduction %></p>
+          </div>
+          <div class = "col">
+            <p>価格</p>
+            <p><%= post.price %></p>
+          </div>
+          <% end %>
+  </div>
+  <% end %>
+  
   <%= paginate @posts %>
 </div>
